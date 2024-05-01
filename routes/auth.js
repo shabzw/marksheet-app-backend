@@ -62,7 +62,9 @@ router.post(
       };
       const authtoken = jwt.sign(data, JWT_SECRET);
       success = true;
-      res.json({ success, authtoken });
+      const loggedInData = await User.find({ email: user.email });
+
+      res.json({ success, authtoken, loggedInData });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server error occured");
