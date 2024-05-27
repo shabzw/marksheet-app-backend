@@ -19,7 +19,7 @@ router.post("/getmarks/", fetchuser, async (req, res) => {
 router.post("/addmarks/", fetchuser, async (req, res) => {
   try {
     const { grade, subjectName, remarks, marksScored, passingMarks } =
-      req.body.newContact; // Destructure properties from req.body
+      req.body.newSubject; // Destructure properties from req.body
     const studentId = req.header("studentId");
     // Create a new Data instance with individual properties
     const newData = new Subjects({
@@ -45,7 +45,7 @@ router.post("/addmarks/", fetchuser, async (req, res) => {
 router.put("/editmarks/", fetchuser, async (req, res) => {
   try {
     const { id, grade, subjectName, remarks, passingMarks, marksScored } =
-      req.body.editedContact; // Destructure properties from req.body
+      req.body.editedSubject; // Destructure properties from req.body
     const studentId = req.header("studentId");
 
     const dataEdit = await Subjects.findById(id);
