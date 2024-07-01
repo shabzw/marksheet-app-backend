@@ -44,7 +44,7 @@ router.post("/addmarks/", fetchuser, async (req, res) => {
 
 router.put("/editmarks/", fetchuser, async (req, res) => {
   try {
-    const { id, grade, subjectName, remarks, passingMarks, marksScored } =
+    const { id, grade, subjectName, remarks, passingMarks, marksScored, lastUpdated} =
       req.body.editedSubject; // Destructure properties from req.body
     const studentId = req.header("studentId");
 
@@ -55,8 +55,9 @@ router.put("/editmarks/", fetchuser, async (req, res) => {
       remarks,
       marksScored,
       passingMarks,
+      lastUpdated
     });
-
+    
     await dataEdit.save();
     const data = await Subjects.find({ idNumber: studentId });
 
